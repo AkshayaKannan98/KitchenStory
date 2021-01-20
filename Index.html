@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="Style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script>
+    function stickyMenu() {
+        var sticky = document.getElementById('sticky');
+        if (window.pageYOffset > 220) {
+            sticky.classList.add('sticky');
+        }
+        else {
+            sticky.classList.remove('sticky');
+        }
+    }
+
+    window.onscroll = function () {
+        stickyMenu();
+    }
+    function searchfunc() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        a = document.getElementsByClassName("dropdown-item");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            console.log(1);
+            if (txtValue.toUpperCase().indexOf(filter) > -1 && filter.length != 0) {
+                a[i].style.display = "block";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+        }
+        var cartinformation = 0;
+
+        function AddtoCart(product) {
+
+            var grams = 250;
+            var price;
+
+            if (cartinformation == "")
+                cartinformation = 1;
+            else
+                cartinformation = 1 + cartinformation;
+
+
+            if (product == "rice") {
+                var e = document.getElementById("ricekg");
+                grams = e.options[e.selectedIndex].text;
+                price ='₹' + e.options[e.selectedIndex].value * 45;
+                
+            }
+
+            else if ((product == "beans")) {
+                var e = document.getElementById("beanskg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 35;
+            }
+
+            else if ((product == "dal")) {
+                var e = document.getElementById("dalkg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 40;
+            }
+
+            else if ((product == "carrot")) {
+                var e = document.getElementById("carrotkg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 30;
+            }
+
+            else if ((product == "beetroot")) {
+                var e = document.getElementById("beetrootkg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 35;
+            }
+
+            else if ((product == "capsicum")) {
+                var e = document.getElementById("capsicumkg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 45;
+            }
+
+            else if ((product == "apple")) {
+                var e = document.getElementById("applekg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 60;
+            }
+
+            else if ((product == "banana")) {
+                var e = document.getElementById("bananakg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 45;
+            }
+
+            else if ((product == "orange")) {
+                var e = document.getElementById("orangekg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 40;
+            }
+
+            else if ((product == "lays")) {
+                var e = document.getElementById("laysqty");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 30;
+            }
+
+            else if ((product == "wheelchips")) {
+                var e = document.getElementById("wheelchipsqty");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 30;
+            }
+
+            else if ((product == "pringles")) {
+                var e = document.getElementById("pringlesqty");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 70;
+            }
+            else if ((product == "almonds")) {
+                var e = document.getElementById("almondskg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 40;
+            }
+            else if ((product == "cashew")) {
+                var e = document.getElementById("cashewkg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 50;
+            }
+            else if ((product == "walnuts")) {
+                var e = document.getElementById("walnutskg");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 55;
+            }
+
+            var newdata = "";
+            var soupdetails = product + "~" + grams + "~" + price;
+            var olddata = sessionStorage.getItem("Cartdetails");
+            if (olddata == null)
+                newdata = soupdetails;
+            else
+                newdata = olddata + ";" + soupdetails;
+
+            
+            sessionStorage.setItem("Cartdetails", newdata);
+
+            document.getElementById('lblCartDetails').innerText = cartinformation;
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <div class="parallax">
+        <div class="page-title">
+            Kitchen Story
+        </div>
+    </div>
+    <div class="menu" id="sticky">
+        <ul class="menu-ul">
+            <a href="#" class="a-menu"><li>Home</li></a>
+            <a href="#pulses" class="a-menu"><li>Pulses</li></a>
+            <a href="#vegetables" class="a-menu"><li>Vegetables</li></a>
+            <a href="#fruits" class="a-menu"><li>Fruits</li></a>
+            <a href="#chips" class="a-menu"><li>Chips</li></a>
+            <a href="#nuts" class="a-menu"><li>Nuts</li></a>
+            <a href="AddToCart.html" class="a-menu"><li>Cart</li></a>
+            <a href="Login.html" class="a-menu"><li>Login</li></a>
+            <a href="Register.html" class="a-menu"><li>Register</li></a>
+
+        </ul>
+        <div class="search-box" id="myDropdown">
+            <form>
+                <input type="text" placeholder="Search" name="search" class="search-input" id="myInput" onkeyup="searchfunc()" />
+
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="dropdown-content">
+            <ul class="dropdown-list">
+                <li><a href="#pulses" class="dropdown-item">Pulses</a></li>
+                <li><a href="#vegetables" class="dropdown-item">Vegetables</a></li>
+                <li><a href="#fruits" class="dropdown-item">Fruits</a></li>
+                <li><a href="#chips" class="dropdown-item">Chips</a></li>
+                <li><a href="#nuts" class="dropdown-item">Nuts</a></li>
+                <li><a href="#pulses" class="dropdown-item">Rice</a></li>
+                <li><a href="#pulses" class="dropdown-item">Red Beans</a></li>
+                <li><a href="#pulses" class="dropdown-item">Dal</a></li>
+                <li><a href="#vegetables" class="dropdown-item">Carrot</a></li>
+                <li><a href="#vegetables" class="dropdown-item">Beetroot</a></li>
+                <li><a href="#vegetables" class="dropdown-item">Capsicum</a></li>
+                <li><a href="#fruits" class="dropdown-item">Apple</a></li>
+                <li><a href="#fruits" class="dropdown-item">Orange</a></li>
+                <li><a href="#fruits" class="dropdown-item">Banana</a></li>
+                <li><a href="#chips" class="dropdown-item">Pringles</a></li>
+                <li><a href="#chips" class="dropdown-item">Lays</a></li>
+                <li><a href="#chips" class="dropdown-item">Wheel chips</a></li>
+                <li><a href="#nuts" class="dropdown-item">Almonds</a></li>
+                <li><a href="#nuts" class="dropdown-item">Walnuts</a></li>
+                <li><a href="#nuts" class="dropdown-item">Cashew</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <a href="#pulses">
+            <div class="container-categories">
+                <img src="images/pulses.jpg" class="item-image" />
+                <div class="image-title">Pulses</div>
+            </div>
+        </a>
+        <a href="#vegetables">
+            <div class="container-categories">
+                <img src="images/vegetables.jpg" class="item-image" />
+                <div class="image-title">Vegetables</div>
+            </div>
+        </a>
+        <a href="#fruits">
+            <div class="container-categories">
+                <img src="images/fruits.jpg" class="item-image" />
+                <div class="image-title">Fruits</div>
+            </div>
+        </a>
+        <a href="#chips">
+            <div class="container-categories">
+                <img src="images/chips.jpg" class="item-image" />
+                <div class="image-title">Chips</div>
+            </div>
+        </a>
+        <a href="#nuts">
+            <div class="container-categories">
+                <img src="images/nuts.jpg" class="item-image" />
+                <div class="image-title">Nuts</div>
+            </div>
+        </a>
+        
+    </div>
+    <div class="deals-container" id="pulses">
+        <div class="parallax">
+            <div class="title">PULSES</div>
+        </div>
+        <div class="items" id="rice">
+            <div class="images">
+                <img src="images/rice.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Rice</b><br />
+                           <div class="item-select">
+                               Price : ₹45/250grams
+                           </div>
+                <label>Qty:</label>
+                <select class="item-select" id="ricekg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="AddtoCart('rice')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items">
+            <div class="images" id="beans">
+                <img src="images/beans.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Red Beans</b><br />
+                                <div class="item-select">
+                                    Price : ₹35/250grams
+                                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="beanskg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('beans')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items" id="dal">
+            <div class="images">
+                <img src="images/dal.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Dal</b><br />
+                          <div class="item-select">
+                              Price : ₹40/250grams
+                          </div>
+                <label>Qty:</label>
+                <select class="item-select" id="dalkg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('dal')">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="deals-container" id="vegetables">
+        <div class="parallax">
+            <div class="title">VEGETABLES</div>
+        </div>
+        <div class="items" id="carrot">
+            <div class="images">
+                <img src="images/vegetables1.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Carrot</b><br />
+                             <div class="item-select">
+                                 Price : ₹30/250grams
+                             </div>
+                <label>Qty:</label>
+                <select class="item-select" id="carrotkg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('carrot')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items" id="beetroot">
+            <div class="images">
+                <img src="images/vegetables2.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Beetroot</b><br />
+                               <div class="item-select">
+                                   Price : ₹35/250grams
+                               </div>
+                <label>Qty:</label>
+                <select class="item-select" id="beetrootkg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('beetroot')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items" id="capsicum">
+            <div class="images">
+                <img src="images/vegetables3.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Capsicum</b><br />
+                               <div class="item-select">
+                                   Price : ₹45/250grams
+                               </div>
+                <label>Qty:</label>
+                <select class="item-select" id="capsicumkg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('capsicum')">Add To Cart</button>
+            </div>
+        </div>
+       
+        
+
+    </div>
+    <div class="deals-container" id="fruits">
+        <div class="parallax">
+            <div class="title">FRUITS</div>
+        </div>
+        <div class="items" id="apple">
+            <div class="images">
+                <img src="images/apple.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Apple</b><br />
+                            <div class="item-select">
+                                Price : ₹60/250grams
+                            </div>
+                <label>Qty:</label>
+                <select class="item-select" id="applekg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('apple')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items" id="banana">
+            <div class="images">
+                <img src="images/banana.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Banana</b><br />
+                             <div class="item-select">
+                                 Price : ₹45/250grams
+                             </div>
+                <label>Qty:</label>
+                <select class="item-select" id="bananakg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('banana')">Add To Cart</button>
+            </div>
+        </div>
+        <div class="items" id="orange">
+            <div class="images">
+                <img src="images/orange.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Orange</b><br />
+                             <div class="item-select">
+                                 Price : ₹40/250grams
+                             </div>
+                <label>Qty:</label>
+                <select class="item-select" id="orangekg">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                         <button class="buynow-btn" onclick="AddtoCart('orange')">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+        <div class="deals-container" id="chips">
+            <div class="parallax">
+                <div class="title">CHIPS</div>
+            </div>
+            <div class="items" id="lays">
+                <div class="images">
+                    <img src="images/chips1.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Lays</b><br />
+                               <div class="item-select">
+                                   Price : ₹30/pack
+                               </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="laysqty">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('lays')">Add To Cart</button>
+                </div>
+            </div>
+            <div class="items" id="wheelchips">
+                <div class="images">
+                    <img src="images/chips2.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Wheel Chips</b><br />
+                                      <div class="item-select">
+                                          Price : ₹30/pack
+                                      </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="wheelchipsqty">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('wheelchips')">Add To Cart</button>
+                </div>
+            </div>
+            <div class="items" id="pringles">
+                <div class="images">
+                    <img src="images/chips3.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Pringles</b><br />
+                                   <div class="item-select">
+                                       Price : ₹70/pack
+                                   </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="pringlesqty">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('pringles')">Add To Cart</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="deals-container" id="nuts">
+            <div class="parallax">
+                <div class="title">NUTS</div>
+            </div>
+            <div class="items" id="almonds">
+                <div class="images">
+                    <img src="images/almonds.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Almonds</b><br />
+                                  <div class="item-select">
+                                      Price : ₹40/50grams
+                                  </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="almondskg">
+                        <option value="1">50 grams</option>
+                        <option value="2">100 grams</option>
+                        <option value="3">150 grams</option>
+                        <option value="4">200 grams</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('almonds')">Add To Cart</button>
+                </div>
+            </div>
+            <div class="items" id="cashew">
+                <div class="images">
+                    <img src="images/cashew.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Cashew</b><br />
+                                 <div class="item-select">
+                                     Price : ₹50/50grams
+                                 </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="cashewkg">
+                        <option value="1">50 grams</option>
+                        <option value="2">100 grams</option>
+                        <option value="3">150 grams</option>
+                        <option value="4">200 grams</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('cashew')">Add To Cart</button>
+                </div>
+            </div>
+            <div class="items" id="walnuts">
+                <div class="images">
+                    <img src="images/walnuts.jpg" class="item-image-size" />
+                </div>
+                <div class="description">
+                    <b>Walnuts</b><br />
+                                  <div class="item-select">
+                                      Price : ₹55/50grams
+                                  </div>
+                    <label>Qty:</label>
+                    <select class="item-select" id="walnutskg">
+                        <option value="1">50 grams</option>
+                        <option value="2">100 grams</option>
+                        <option value="3">150 grams</option>
+                        <option value="4">200 grams</option>
+                    </select><br />
+                             <button class="buynow-btn" onclick="AddtoCart('walnuts')">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+
+            <div class="copyrights">
+                <i class="far fa-copyright fa-lx"></i>2020 By Programers Web Drive
+            </div>
+        </div>
+
+</body>
+</html>

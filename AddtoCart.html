@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            background-color: #FFFFCC;
+        }
+        span{
+            color:black;
+           
+        }
+        #a{
+            padding:190px;
+            
+        }
+        #b{
+            padding-left:215px;
+        }
+        #c{
+            padding-left:360px;
+        }
+        .table {
+            text-align:center;
+            height: 50px;
+            border: 1px solid black;
+            width: 100%;
+        }
+
+        .cart {
+            background-image: url(images/food.jpg);
+            height: 220px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .title {
+            text-align: center;
+            font-size: xx-large;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+            color: white;
+            padding: 50px;
+            font-variant: small-caps;
+            font-size: 100px;
+            font-family: fantasy;
+            letter-spacing: 20px;
+        }
+        .total{
+            float:right;
+            padding-right:210px;
+        }
+        .placebutton {
+            padding-right: 100px;
+        }
+        
+        .button {
+            font-size: 20px;
+            transition-duration: 0.4s;
+            float:right;
+            
+           
+        }
+            .button:hover {
+                background-color: white;
+            }
+    </style>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        
+        function Loadinformation() {
+
+            var olddata = sessionStorage.getItem("Cartdetails");
+            addTable(olddata);
+            document.getElementById('lblCardDetails').innerHTML = olddata;
+
+        }
+
+        function addRow(soupname, Grams, Price) {
+
+
+
+            var rowCount = table.rows.length;
+            
+            var row = table.insertRow(rowCount);
+
+            row.insertCell(0).innerHTML = product;
+            row.insertCell(1).innerHTML = Grams;
+            row.insertCell(2).innerHTML = Price;
+
+        }
+
+        //function deleteRow(obj) {
+
+        //    var index = obj.parentNode.parentNode.rowIndex;
+        //    var table = document.getElementById("myTableData");
+        //    table.deleteRow(index);
+
+        //}
+
+        function addTable(olddata) {
+
+            var myTableDiv = document.getElementById("myDynamicTable");
+            
+            var table = document.createElement('TABLE');
+            table.border = '1';
+            table.className = "table";
+            
+            var tableBody = document.createElement('TBODY');
+            table.appendChild(tableBody);
+
+
+
+            var rows = olddata.split(';');
+
+
+
+            for (var i = 0; i < rows.length; i++) {
+                var tr = document.createElement('TR');
+                tableBody.appendChild(tr);
+
+                var columns = rows[i].split('~');
+                var product = columns[0];
+                var grams = columns[1];
+                var price = columns[2];
+
+
+                for (var j = 0; j < 3; j++) {
+                    var td = document.createElement('TD');
+                    td.width = '250';
+                    
+                    td.appendChild(document.createTextNode(columns[j]));
+                    tr.appendChild(td);
+                }
+            }
+
+            myTableDiv.appendChild(table);
+
+        }
+
+        //function Total{
+        //    var total;
+        //    for (var i = 0; i < price.rowCount; i++) 
+        //}
+
+    </script>
+</head>
+<body onload="javascript:Loadinformation();">
+    <div class="cart">
+        <div class="title"><b>Cart</b></div>
+        <span id="a">Product</span>
+        <span id="b">Quantity</span>
+        <span id="c">Price(₹)</span>
+    </div>
+    <br/>
+    <br/>
+    <div id="myDynamicTable"> </div>
+    <br/>
+    <div class="total"><b>Total: &nbsp;  &nbsp; &nbsp;</b></div><br/><br/><br/>
+    <div class="placebutton"><a href="OrderSummary.html"><input type="submit" class="button" value="Place Order" /></a></div>
+</body>
+</html>
